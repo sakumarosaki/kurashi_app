@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <title>くらしの仕組み化</title>
+  <meta name="theme-color" content="#5faf7d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="くらし" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- PyScript -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+</head>
+<body>
+  <!-- ローディング画面（PyScript初回読み込みが遅い時の保険） -->
+  <div id="loading">
+    <div class="loading-card">
+      <div class="loading-sprout">🌱</div>
+      <div class="loading-title">くらしの仕組み化</div>
+      <div class="loading-sub">準備しています…</div>
+      <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+      <div class="loading-note">初回だけ少し時間がかかります</div>
+    </div>
+  </div>
+
+  <!-- アプリ本体はここに描画される -->
+  <div id="app"></div>
+
+  <!-- 達成演出の重ね描き用 -->
+  <div id="fx"></div>
+
+  <!-- PyScript設定とコード -->
+  <script type="py" src="./main.py" config="./pyscript.toml"></script>
+
+  <!-- Service Worker登録（PWA / オフライン起動） -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function (e) {
+          console.log('SW登録に失敗:', e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
