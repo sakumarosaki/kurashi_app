@@ -1,17 +1,16 @@
 /* くらしの仕組み化 — Service Worker
-   PWAのオフライン起動（ベストエフォート）。
-   ローカルのファイルはキャッシュし、CDN(PyScript/Pyodide)は取得できたぶんだけ実行時にキャッシュする。
+   PWAのオフライン起動。自分のファイルはネット優先で取得し（更新が届く）、
+   オフライン時はキャッシュにフォールバックする。全ファイル同一オリジンで完結（外部CDN無し）。
    通知はNotification APIで、アプリを開いている時のローカル通知をベストエフォートで扱う。 */
 
-const CACHE = "kurashi-v2";
+const CACHE = "kurashi-v3";
 
 // アプリ本体（オフラインで確実に必要なもの）
 const CORE = [
   "./",
   "./index.html",
   "./style.css",
-  "./main.py",
-  "./pyscript.toml",
+  "./app.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-192.png",

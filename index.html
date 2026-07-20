@@ -12,19 +12,15 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
-  <!-- PyScript -->
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css" />
-  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
 </head>
 <body>
-  <!-- ローディング画面（PyScript初回読み込みが遅い時の保険） -->
+  <!-- ローディング画面（JS読み込み前の一瞬だけ表示。すぐ消えます） -->
   <div id="loading">
     <div class="loading-card">
       <div class="loading-sprout">🌱</div>
       <div class="loading-title">くらしの仕組み化</div>
       <div class="loading-sub">準備しています…</div>
       <div class="loading-bar"><div class="loading-bar-fill"></div></div>
-      <div class="loading-note">初回だけ少し時間がかかります</div>
     </div>
   </div>
 
@@ -34,8 +30,8 @@
   <!-- 達成演出の重ね描き用 -->
   <div id="fx"></div>
 
-  <!-- PyScript設定とコード -->
-  <script type="py" src="./main.py" config="./pyscript.toml"></script>
+  <!-- アプリ本体（軽量JavaScript版） -->
+  <script src="app.js" defer></script>
 
   <!-- Service Worker登録（PWA / オフライン起動） -->
   <script>
